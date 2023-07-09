@@ -37,7 +37,11 @@ if __name__ == "__main__":
     print("RUNNING SONAR")
     topic_name = "sonar_poses"
     rospy.init_node('sonar_node')
-
+    print(rospy.get_param_names())
+    topic_name = topic_name if "/sonar_node/topic_name" \
+        not in rospy.get_param_names() \
+        else rospy.get_param("/sonar_node/topic_name") 
+    print(topic_name)
     sub = rospy.Subscriber(topic_name, object_pose,callback)
     # Create an instance of ContinuousScatterPlot and run it
     scatter_plot = ContinuousScatterPlot()

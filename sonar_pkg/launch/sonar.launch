@@ -1,0 +1,9 @@
+<launch>
+  
+  
+    <node pkg="sonar_pkg" type="sonar.py" name="sonar_node" output="screen">
+    <param name="topic_name" value="sonar_poses"/>
+  </node>
+
+  
+</launch>
