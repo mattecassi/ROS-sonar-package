@@ -20,13 +20,13 @@ def tf2pose(msg):
 
 if __name__ == "__main__":
     rospy.init_node("converter_node")
-    print(rospy.get_param_names())
+    #print(rospy.get_param_names())
     topic_name = "sonar_poses"
     topic_name = topic_name if "/tf2pose/topic_name" \
         not in rospy.get_param_names() \
         else rospy.get_param("/tf2pose/topic_name") 
-    print(topic_name)
+    #print(topic_name)
     
-    pub = rospy.Publisher(topic_name, object_pose, queue_size=1)
-    sub = rospy.Subscriber("/tf", TFMessage, callback=tf2pose)
+    pub = rospy.Publisher(topic_name, object_pose, queue_size=200)
+    sub = rospy.Subscriber("/tf", TFMessage, callback=tf2pose, queue_size=200)
     rospy.spin()
